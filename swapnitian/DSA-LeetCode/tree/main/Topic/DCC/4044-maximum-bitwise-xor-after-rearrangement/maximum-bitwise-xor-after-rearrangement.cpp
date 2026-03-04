@@ -6,7 +6,6 @@ public:
         for(char c : t){
             cnt[c-'0']++ ;
         }
-        cout << cnt[0] << " " << cnt[1] << endl;
         string ans = "" ;
         for(int i = 0 ; i < n ; i++){
             if(s[i] == '0'){
