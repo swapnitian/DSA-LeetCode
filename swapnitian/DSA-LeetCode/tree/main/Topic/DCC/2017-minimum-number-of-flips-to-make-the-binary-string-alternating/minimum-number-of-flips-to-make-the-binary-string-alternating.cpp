@@ -9,23 +9,21 @@ public:
 
         int l = 0 ;
         for(int r = 0 ; r < 2*n ; r++){
-            
-            if(r%2 == 0){
-                if(s[r] == '1')flip1++ ;
-                else flip2++ ;
-            }else {
-                if(s[r] == '1')flip2++ ;
-                else flip1++ ;
-            }
+            char c1 = (r%2 == 0) ? '0' : '1' ; // start with  010101...
+            char c2 = (r%2 == 0) ? '1' : '0' ; // start with 101010....
+
+            if(s[r%n] != c1) flip1++ ;
+
+            if(s[r%n] != c2) flip2++ ;
+
             if(r-l+1 > n){
-                if(l%2 == 0){
-                    if(s[l] == '1')flip1-- ;
-                    else flip2-- ;
-                }else {
-                    if(s[l] == '1')flip2-- ;
-                    else flip1-- ;
-                }
-                l++; 
+                char c1 = (l%2 == 0) ? '0' : '1' ; // start with  010101...
+                char c2 = (l%2 == 0) ? '1' : '0' ; // start with 101010....
+
+                if(s[l] != c1) flip1-- ;
+                if(s[l] != c2) flip2-- ;
+
+                l++ ;
             }
             if(r-l+1 == n){
                 ans = min({ans , flip1 , flip2}) ;
