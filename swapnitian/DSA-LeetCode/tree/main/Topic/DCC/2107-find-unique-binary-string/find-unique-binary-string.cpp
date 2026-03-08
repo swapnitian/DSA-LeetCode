@@ -25,7 +25,18 @@ public:
             if(count(nums.begin() , nums.end() , it) == 0) return it ;
         }
         // cout << endl;
+        
+        // return "" ;
+        // try with 2 approach -- 
 
-        return "" ;
+        int n1 = nums.size();
+        string ans = "";
+        for(int i = 0; i < n1; i++){
+            if(nums[i][i] == '0')
+                ans += '1';
+            else
+                ans += '0';
+        }
+        return ans;
     }
 };
