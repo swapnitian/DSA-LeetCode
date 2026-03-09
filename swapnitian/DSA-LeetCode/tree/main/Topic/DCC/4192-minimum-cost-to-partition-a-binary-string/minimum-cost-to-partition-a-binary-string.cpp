@@ -1,13 +1,12 @@
 class Solution {
 private:
-    long long recursion(vector<long long>&prefsum , int &ecost , int &fcost ,int st , int end ,
-                            map<pair<int,int>,long long>&dp){
+    long long recursion(vector<long long>&prefsum , int &ecost , int &fcost ,int st , int end){
         
         int len = end-st ;
         int cnt1 = prefsum[end]-prefsum[st]  ; 
         long long cost ;
 
-        if(dp.count({st ,end})) return dp[{st , end}] ;
+        // if(dp.count({st ,end})) return dp[{st , end}] ;
 
         if(cnt1 > 0){
             cost = 1LL*ecost*len*cnt1*1LL ;
@@ -18,10 +17,10 @@ private:
         if(len%2 == 0){
             int mid = (st+end)/2 ;
         
-            cost = min(cost , recursion(prefsum,ecost ,fcost , st ,mid ,dp)+
-                                recursion(prefsum,ecost , fcost ,mid , end ,dp)) ;
+            cost = min(cost , recursion(prefsum,ecost ,fcost , st ,mid)+
+                                recursion(prefsum,ecost , fcost ,mid , end)) ;
         }
-        return dp[{st , end}] = cost ;
+        return cost ;
     }
 public:
     long long minCost(string s, int encCost, int flatCost) {
@@ -35,7 +34,7 @@ public:
         //     cout << it << " " ;
         // }
         // vector<vector<long long>>dp(n+2 , vector<long long>(n+2 , -1)) ;
-        map<pair<int,int>,long long> dp ;
-        return recursion(prefsum , encCost , flatCost , 0 , n ,dp);
+        // map<pair<int,int>,long long> dp ;
+        return recursion(prefsum , encCost , flatCost , 0 , n);
     }
 };
