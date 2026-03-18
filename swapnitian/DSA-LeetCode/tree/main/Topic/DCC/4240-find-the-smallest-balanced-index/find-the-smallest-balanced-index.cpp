@@ -13,8 +13,8 @@ public:
             
             if(prefsum == prod) return i ; 
             
-            if(prod >=  4e15) break  ;
-            prod *= nums[i] ;
+            if(prod > prefsum/nums[i]) break  ;
+            prod *= 1LL*nums[i] ;
         }
         return -1 ;
     }
