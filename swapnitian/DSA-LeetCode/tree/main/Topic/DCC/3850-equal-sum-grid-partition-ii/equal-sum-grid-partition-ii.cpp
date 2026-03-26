@@ -3,7 +3,7 @@ class Solution {
         int m = grid.size();
         int n = grid[0].size();
 
-        set <long long> s;
+        unordered_set <long long> s;
 
         long long total = 0 ;
 
