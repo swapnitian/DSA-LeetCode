@@ -1,20 +1,25 @@
 class Solution {
 public:
     bool checkStrings(string s1, string s2) {
-        multiset<char> odd1 , odd2 ;
-        multiset<char> even1 , even2 ;
+        vector<int> odd(26 , 0) ;
+        vector<int> even(26 , 0) ;
+
         int n = s1.size() ;
-        
+
         for(int i = 0 ; i < n ; i++){
             if(i&1){
-                odd1.insert(s1[i]) ;
-                odd2.insert(s2[i]) ;
+                odd[s1[i] - 'a']++ ;
+                odd[s2[i] - 'a']-- ;
             }else{
-                even1.insert(s1[i]) ;
-                even2.insert(s2[i]) ;
+                even[s1[i] -'a']++ ;
+                even[s2[i] -'a']-- ;
             }
         }
+        
+        for(int i = 0 ; i < 26 ; i++){
+            if(even[i] != 0 || odd[i] != 0) return false ;
+        }
 
-        return ((odd1 == odd2) && (even1 == even2)) ;
+        return true ;
     }
 };
