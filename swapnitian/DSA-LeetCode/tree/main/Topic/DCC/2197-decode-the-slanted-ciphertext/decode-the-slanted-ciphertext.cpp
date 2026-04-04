@@ -1,28 +1,37 @@
 class Solution {
 public:
     string decodeCiphertext(string encodedText, int rows) {
-        int cols = encodedText.size()/rows ;
+        int n = encodedText.size() ;
+        int cols = n/rows ;
         vector<vector<char>> v(rows , vector<char>(cols , '.')) ;
 
         int idx = 0 ;
 
-        for(int i = 0 ; i < rows ; i++){
-            for(int j = 0 ; j < cols ; j++){
-                v[i][j] = encodedText[idx] ;
-                idx++ ;
-            }
-        }
-        // now we will form orgText string using simulation -- 
+        // for(int i = 0 ; i < rows ; i++){
+        //     for(int j = 0 ; j < cols ; j++){
+        //         v[i][j] = encodedText[idx] ;
+        //         idx++ ;
+        //     }
+        // }
+        // now we will form originalText string using simulation -- 
         string originalText = "" ;
 
-        for(int j = 0 ; j < cols ; j++){
-            int c = j ;
-            for(int i = 0 ; i < rows && c < cols ; i++){
-                originalText += v[i][c] ;
-                c++ ;
+        // for(int j = 0 ; j < cols ; j++){
+        //     int c = j ;
+        //     for(int i = 0 ; i < rows && c < cols ; i++){
+        //         originalText += v[i][c] ;
+        //         c++ ;
+        //     }
+        // }
+
+
+        // Approach -2 --> (Space Optimised using O(1) Space) --->
+
+        for(int c = 0 ; c < cols ;c++){
+            for(int j = c ; j < n ; j += cols+1){
+                originalText += encodedText[j] ;
             }
         }
-
         // remove the extraspace from originalText ;
 
         for(int k = originalText.size()-1 ; k > 0 ; k--){
