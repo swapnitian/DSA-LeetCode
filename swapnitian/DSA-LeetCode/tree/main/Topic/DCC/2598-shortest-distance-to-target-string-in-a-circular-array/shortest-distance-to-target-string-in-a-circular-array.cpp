@@ -1,25 +1,15 @@
 class Solution {
 public:
     int closestTarget(vector<string>& words, string target, int startIndex) {
+        int ans = words.size();
         int n = words.size();
-        int ans = INT_MAX;
-        // will go once forward and backward 
-        int k = n;
-        int idx = startIndex;
-        while(k--){
-            if(words[idx] == target) ans = min(ans , (n-startIndex+idx)%n);
 
-            if(idx == n-1) idx = -1;
-            idx++;
+        for (int i = 0; i < n; ++i) {
+            if (words[i] == target) {
+                int dist = abs(i - startIndex);
+                ans = min(ans, min(dist, n - dist));
+            }
         }
-        idx = startIndex;
-        k = n;
-        while(k--){
-            if(words[idx] == target) ans = min(ans , (startIndex-idx+n)%n);
-            
-            if(idx == 0) idx = n;
-            idx-- ;
-        }
-        return ans == INT_MAX ? -1 : ans;
+        return ans < n ? ans : -1;
     }
 };
