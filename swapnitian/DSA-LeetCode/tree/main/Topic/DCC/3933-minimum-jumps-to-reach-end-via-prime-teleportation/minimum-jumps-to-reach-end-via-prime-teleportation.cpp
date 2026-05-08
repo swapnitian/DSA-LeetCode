@@ -66,6 +66,11 @@ public:
                 }
 
                 for(int multiple = nums[i] ; multiple <= maxi ; multiple += nums[i]){
+
+                    if(!mp.contains(multiple)){
+                        continue;
+                    }
+
                     for(int j : mp[multiple]){
                         if(vis[j] == 0){
                             q.push(j);
