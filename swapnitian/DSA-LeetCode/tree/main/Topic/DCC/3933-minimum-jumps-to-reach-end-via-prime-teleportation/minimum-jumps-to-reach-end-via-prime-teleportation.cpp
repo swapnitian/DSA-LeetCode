@@ -36,6 +36,7 @@ public:
         while(!q.empty()){
             int size = q.size();
 
+            // BFS {TC-> as we visting the node once only --> O(n)}
             while(size--){
                 int i = q.front();
                 q.pop();
@@ -88,4 +89,6 @@ public:
 
         return steps;
     }
+    // TC -> (O(n  + O(maxi * log(log(maxi)))));
+    // SC -> O(n);
 };
