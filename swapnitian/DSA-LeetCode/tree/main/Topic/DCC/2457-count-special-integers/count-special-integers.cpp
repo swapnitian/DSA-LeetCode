@@ -10,6 +10,8 @@ ll recursion(ll idx, ll high, ll started, ll mask){
         return started;
     }
 
+    if(dp[idx][high][started][mask] != -1) return dp[idx][high][started][mask];
+
     ll low_limit = 0; 
     ll high_limit = 9; 
 
@@ -38,13 +40,14 @@ ll recursion(ll idx, ll high, ll started, ll mask){
 
         }
     }
-    return ans;
+    return dp[idx][high][started][mask] = ans;
 }   
 
 public:
     int countSpecialNumbers(int n) {
         s = to_string(n);
         len = s.size();
+        memset(dp , -1, sizeof(dp));
 
         return recursion(0,1,0,0);
     }   
