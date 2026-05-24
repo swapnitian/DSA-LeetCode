@@ -18,8 +18,6 @@ int recursion(vector<int>& arr, int idx, int d, int n,vector<int>&dp){
                 f1 = false;
             }
         }
-    }
-    for(int i = 1; i <= d; i++){
         if(idx-i >= 0){
             if((f2) && (arr[idx] > arr[idx-i])){
                 jump2 = max(jump2 ,1 + recursion(arr, idx-i, d, n,dp));
@@ -28,6 +26,7 @@ int recursion(vector<int>& arr, int idx, int d, int n,vector<int>&dp){
             }
         }
     }
+    
     return dp[idx] = max(jump1 , jump2);
 }
 public:
