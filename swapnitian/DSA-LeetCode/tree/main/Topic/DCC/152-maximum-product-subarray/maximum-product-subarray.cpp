@@ -2,37 +2,17 @@ class Solution {
 public:
     int maxProduct(vector<int>& nums) {
         int n = nums.size();
-        int p1 = 1;
-        int p2 = 1; 
-        int ans = INT_MIN;
-        for(int i = 0; i < n; i++){
-            p1 *= nums[i];
-            p2 *= nums[i];
+        int p1 = nums[0]; int p2 = nums[0]; 
+        int ans = nums[0];
 
-            ans = max(p1, ans);
-            ans = max(p2, ans);
+        for(int i = 1; i < n; i++){
+            int val = max({nums[i], p1*nums[i], p2*nums[i]});
 
-            if(p1 == 0){
-                p1 = 1;
-            }
-            if(p2 <= 0){
-                p2 = 1;
-            }
-        }
-        p1 = 1; p2 = 1;
-        for(int i = n-1; i >= 0; i--){
-            p1 *= nums[i];
-            p2 *= nums[i];
+            p2 = min({nums[i], p1*nums[i], p2*nums[i]});
 
-            ans = max(p1, ans);
-            ans = max(p2, ans);
-
-            if(p1 == 0){
-                p1 = 1;
-            }
-            if(p2 <= 0){
-                p2 = 1;
-            }
+            p1 = val;
+            cout << i << " " << p1 << " " << p2 << endl;
+            ans = max(ans , p1);
         }
         return ans;
     }
