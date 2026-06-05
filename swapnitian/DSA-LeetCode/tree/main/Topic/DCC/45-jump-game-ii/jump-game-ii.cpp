@@ -20,6 +20,27 @@ public:
     int jump(vector<int>& nums) {
         int n = nums.size();
         memset(dp, -1, sizeof(dp));
-        return recursion(nums,0,n);
+        // int n = arr.size();
+
+
+        // GREDDY APPROACH
+        if(n == 1) return 0;
+        int curr = 0;
+        int maxi = 0;
+        int ans  = 0;
+        for(int i = 0; i < n; i++){
+            maxi = max(maxi , i + nums[i]);
+            
+            if(maxi >= n-1) return ans+1;
+            
+            if(i == curr){
+                if(i == maxi) return -1;
+                
+                ans++;
+                
+                curr = maxi;
+            }
+        }
+        return ans+1;
     }
 };
