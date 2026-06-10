@@ -11,6 +11,13 @@ public:
                 ans = max(sum , ans);
             }
         }
+        // 2nd Approach-->
+        vector<int> dp(n+1);    
+        ans = INT_MIN;
+        for(int i = n-1; i >= 0; i--){
+            dp[i] = energy[i] + ((i + k < n) ? dp[i+k] : 0);
+            ans = max(dp[i],ans); 
+        }
         return ans;
     }
 };
