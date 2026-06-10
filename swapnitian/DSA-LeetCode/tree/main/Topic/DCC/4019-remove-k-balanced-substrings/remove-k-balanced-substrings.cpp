@@ -2,34 +2,34 @@ class Solution {
 public:
     string removeSubstring(string s, int k) {
         int n = s.size();
-        string ans = "";
 
-        // in this we will solve by stack and we will immediately remove the group as we found 
+        vector<pair<char,int>> st; // will use as a stack
 
         for(int i = 0; i < n; i++){
-            ans += s[i];
-            int sz = ans.size();
+            if(!st.empty() && st.back().first == s[i]){
+                st.back().second += 1;
+            }else{
+                st.push_back({s[i] , 1});
+            }
+            int sz = st.size();
 
-            if(sz >= 2*k){
-                // now check the last group of k size should be ) and from starting it would be (
-                bool f1 = true;
-                for(int j = 0; j < k; j++){
-                    if(ans[sz-2*k + j] != '('){
-                        f1 = false;
-                        break;
-                    }
-                }
-                for(int j = sz-1; j >= sz-k; j--){
-                    if(ans[j] != ')'){
-                        f1 = false;
-                        break;
-                    }
-                }
-                if(f1){
-                    ans.resize(sz-2*k);
+            if(sz >= 2 && st[sz-1].first == ')' && st[sz-1].second >= k && 
+                st[sz-2].first == '(' && st[sz-2].second >= k){
+
+                st[sz-2].second -= k;
+
+                st.pop_back();
+
+                if(st[sz-2].second == 0){
+                    st.pop_back();
                 }
             }
         }
+        string ans = "";
+        for(int i = 0; i < (int)st.size(); i++){
+            ans = ans.append(st[i].second,st[i].first);
+        }
+
         return ans;
-    }   
+    }
 };
