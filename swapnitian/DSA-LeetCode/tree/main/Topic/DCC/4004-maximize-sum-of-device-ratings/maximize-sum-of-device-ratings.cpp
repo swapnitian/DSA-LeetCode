@@ -6,33 +6,22 @@ public:
         int n = units[0].size();
         ll ans = 0;
 
+        ll mini_max = 1e18; 
+        ll mini = 1e18;
         for(auto &it : units){
             sort(it.begin() , it.end());
-
-            ans += it[0];
+            
+            if(n == 1) ans += it[0];
+            else{
+                ans += it[1];
+                mini_max = min(mini_max , 1LL*it[1]);
+                mini = min(mini , 1LL*it[0]);
+            }
         }
-    
         if(n == 1) return ans;
 
-        ll maxi = units[0][1];
-        ll mini = units[0][0];
-        int idx = 0;
-        ans = 0;
-        for(int i = 1; i < m; i++){
-            if(maxi > units[i][1]){
-                maxi = units[i][1];
-                idx = i;
-            }
-            mini = min(mini , 1LL*units[i][0]);
-        }   
-        cout << idx << endl;
-        for(int i = 0; i < m; i++){
-            if(i != idx){
-                ans += units[i][1];
-            }else{
-                ans += mini;
-            }
-        }
+        ans = ans - mini_max + mini;
+
         return ans;
     }
 };
