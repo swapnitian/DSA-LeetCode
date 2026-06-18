@@ -34,24 +34,24 @@ class Solution {
     void dfs(TreeNode* root,int k, int dist
                 ,map<TreeNode*,TreeNode*>&parent_track,map<TreeNode*,int>&vis){
         if(root == NULL) return;
-
+        vis[root] = 1;
         if(dist == k){
             res.push_back(root->val);
             return; 
         }
         // left
         if(root->left && vis[root->left] == 0){
-            vis[root->left] = 1;
+            // vis[root->left] = 1;
             dfs(root->left,k,dist+1, parent_track, vis);
         }
         // right
         if(root->right && vis[root->right] == 0){
-            vis[root->right] = 1;
+            // vis[root->right] = 1;
             dfs(root->right,k, dist+1, parent_track, vis);
         }
         // parent node
         if(parent_track[root] && vis[parent_track[root]] == 0){
-            vis[parent_track[root]] = 1;
+            // vis[parent_track[root]] = 1;
             dfs(parent_track[root], k, dist+1, parent_track, vis);
         }
     }
@@ -61,7 +61,7 @@ public:
         Mark_Parents(root, parent_track);
 
         map<TreeNode*,int> vis;
-        vis[target] = 1;
+        // vis[target] = 1;
         dfs(target, k, 0, parent_track, vis);
         // queue<TreeNode*> q;
         // q.push(target);
