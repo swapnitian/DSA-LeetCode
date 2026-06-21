@@ -23,7 +23,6 @@ public:
             int v = it[1];
 
             adjlist[u].push_back(v);
-            // adjlist[v].push_back(u);
         }
         ll ans = dfs(adjlist, baseTime, 0);
         return ans;
