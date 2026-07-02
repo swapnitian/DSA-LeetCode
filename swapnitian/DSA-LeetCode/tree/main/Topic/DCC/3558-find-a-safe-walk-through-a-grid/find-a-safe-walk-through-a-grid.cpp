@@ -40,15 +40,6 @@ public:
                 }
             }
         }
-    
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                cout << H[i][j] << " ";
-            }
-            cout << endl;
-        }
-
-
         return (H[n-1][m-1] > 0 ? true : false);
     }
 };
