@@ -39,9 +39,9 @@ public:
 
             ll x = (numbers[r+1] - numbers[l]*pow10[k]%mod + mod)%mod;
 
-            ll sum = (digitSum[r+1] - digitSum[l])%mod;
+            ll sum = (digitSum[r+1] - digitSum[l]);
 
-            res.push_back((x%mod*sum%mod)%mod);
+            res.push_back((x*sum)%mod);
         }
 
         return res;
