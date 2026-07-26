@@ -1,25 +1,17 @@
 class Solution {
 public:
     int maxProduct(int n) {
-        vector<int> dig(10, 0);
+        int dig1 = -1; int dig2 = -1;
         while(n > 0){
-            dig[n%10]++;
+            int currdig = n%10;
+            if(currdig > dig1){
+                dig2 = dig1;
+                dig1 = currdig;
+            }else if(currdig > dig2){
+                dig2 = currdig;
+            }
             n /= 10;
         }
-        int cnt = 2;
-        int maxi = 1;
-        for(int i = 9; i >= 0; i--){
-            if(dig[i] > 0 && cnt){
-                if(dig[i] > 1 && cnt == 2){
-                    maxi = i*i;
-                    cnt -= 2;
-                }else{
-                    maxi *= i;
-                    cnt--;
-                }
-            }
-        }
-        
-        return maxi;
+        return dig1*dig2;
     }
 };
