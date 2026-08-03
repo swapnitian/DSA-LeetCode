@@ -5,8 +5,8 @@ class Solution {
 
         if(dp[st][end] != -1) return dp[st][end];
 
-        return dp[st][end] = max(piles[st] + recursion(st+1, end, piles), 
-                    piles[end] + recursion(st, end-1, piles));
+        return dp[st][end] = max(piles[st] - recursion(st+1, end, piles), 
+                    piles[end] - recursion(st, end-1, piles));
     }
 public:
     bool stoneGame(vector<int>& piles) {
