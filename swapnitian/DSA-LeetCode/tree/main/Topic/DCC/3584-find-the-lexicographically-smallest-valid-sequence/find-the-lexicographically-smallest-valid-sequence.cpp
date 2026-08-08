@@ -22,17 +22,17 @@ public:
         //  --> or we can use change power on that idx by checking suff cnt
         //  --> just move forward if both two condition not satisfied;
 
-        vector<int> ans(n2, n1);
+        vector<int> ans;
         idx2 = 0;
         bool used = false;
 
         for(int idx1 = 0; idx1 < n1; idx1++){
             if(idx2 < n2 && word1[idx1] == word2[idx2]){
-                ans[idx2] = idx1;
+                ans.push_back(idx1);
                 idx2++;
             }else if(idx2 < n2 && used == false){
                 if(idx1+1 < n1 && RightMatch[idx1+1] >= n2-idx2-1){
-                    ans[idx2] = idx1;
+                    ans.push_back(idx1);
                     idx2++;
                     used = true;
                 }else if(idx1 == n1){
@@ -42,9 +42,8 @@ public:
             }
         }
 
-        for(int i = 0; i < n2; i++){
-            if(ans[i] == n1) return {};
-        }
+        if(ans.size() != n2) return {};
+
         return ans;
     }
 };
