@@ -7,7 +7,7 @@ class Solution {
 
         long long ans = (person == 1) ? -1 : INT_MAX;
         long long sum = 0;
-        for(int x = 1; x <= min(n-idx, 2*M); x++){
+        for(int x = 1; idx + x <= n && x <= 2*M; x++){
             sum += piles[idx+x-1];
 
             if(person == 1){
