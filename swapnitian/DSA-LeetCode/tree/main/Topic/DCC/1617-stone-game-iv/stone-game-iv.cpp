@@ -2,8 +2,6 @@ class Solution {
     int dp[2][100001];
     bool recursion(int person, int n){
         if(n == 0){
-            // if(person == 0) return true;
-
             return false;
         }
 
@@ -17,7 +15,18 @@ class Solution {
     }
 public:
     bool winnerSquareGame(int n) {
-        memset(dp, -1, sizeof(dp));
-        return recursion(1, n);
+        vector<int> dp(n+2, false);
+
+        for(int i = 1; i <= n; i++){
+            bool ans = false;
+            for(int x = 1; x*x <= i; x++){
+                if(!dp[i-x*x]){
+                    dp[i] = true;
+                    break;
+                }
+            }
+            // dp[i] = false;
+        }
+        return dp[n];
     }
 };
