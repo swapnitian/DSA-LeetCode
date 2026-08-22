@@ -19,6 +19,7 @@ public:
             return root;
         }else if(leftLCA != NULL){
             return leftLCA;
-        }else return rightLCA;
+        }
+        return rightLCA;
     }
 };
