@@ -22,7 +22,7 @@ public:
             int t = q.front().second;
             q.pop();
             
-            mintime = max(mintime, t);
+            mintime = t;
 
             int delrow[4] = {-1, 0, 1, 0};
             int delcol[4] = {0, 1, 0, -1};
@@ -42,13 +42,11 @@ public:
                 q.push({{nr, nc}, t+1});
             }   
         }
-
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if(grid[i][j] == 1) return -1;
             }
         }
-
         return mintime;
     }
 };
