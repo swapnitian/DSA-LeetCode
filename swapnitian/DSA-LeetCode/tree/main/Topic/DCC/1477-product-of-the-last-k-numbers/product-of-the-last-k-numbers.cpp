@@ -2,7 +2,6 @@ class ProductOfNumbers {
 public:
     vector<int> v;
     ProductOfNumbers() {
-        vector<int> v;
     }
     
     void add(int num) {
